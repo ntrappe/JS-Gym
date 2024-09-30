@@ -1,6 +1,10 @@
 # Scoping
+1. [Global](#global-scope)
+2. [Function](#function-scope)
+3. [Block](#block-scope)
+4. [Knowledge Check](#knowledge-check)
 
-## Global-Level
+## Global Scope
 Variables declared in the **global scope** are accessible from anywhere in the code. 
 
 ```js
@@ -34,7 +38,7 @@ window.husky                // 'I am a husky'
 ```
 
 
-## Function-Level
+## Function Scope
 Variables declared with `var` are **function-scoped**. They can be accessed anywhere within the function but not outside it.
 ```js
 function hello() {
@@ -74,7 +78,7 @@ function hello() {
 }
 ```
 
-## Block-Level
+## Block Scope
 **Block scope** applies to code within `{ }` (e.g. within an `if` statement, loop, or function). Variables `let` and `const` are block-scoped so they are confined to the block in which they are declared.
 ```js
 function hello() {
@@ -85,3 +89,70 @@ function hello() {
 }
 console.log(pug);            // ERROR
 console.log(shiba);          // ERROR
+```
+
+## Knowledge Check
+1. **Declaration & Hoisting**: What will be the following code output and why?
+```js
+console.log(a); 
+var a = 10;
+console.log(a); 
+```
+<details>
+  <summary>Answer</summary>
+  First, <b>undefined</b> because variable a was hoisted. Then, <b>10</b>.  
+</details>
+
+2. **Block Scope**: What will be the result of the following code?
+```js
+{
+    let x = 5;
+    const y = 10;
+}
+console.log(x); 
+console.log(y); 
+```
+<details>
+  <summary>Answer</summary>
+  Both result in **ERROR** because x and y are only accessible from inside { }.  
+</details>
+
+3. **Function Scope**: Given the following code, what will be the output and why?
+```js
+function testVarScope() {
+    if (true) {
+        var a = 20;
+    }
+    console.log(a); 
+}
+testVarScope();
+```
+<details>
+  <summary>Answer</summary>
+  Output is **20** because var is function-scoped, so the variable a declared inside the if block is accessible anywhere within the function scope.
+</details>
+
+4. **TDZ**: Predict what will happen.
+```js
+console.log(b);
+let b = 15;
+```
+<details>
+  <summary>Answer</summary>
+  An **ERROR** is produced because let is hoisted and stays in the TDZ until initialized.
+</details>
+
+5. **Global Scope**: What will be logged to the console and why?
+```js
+var globalVar = "I'm a var";
+let globalLet = "I'm a let";
+const globalConst = "I'm a const";
+
+console.log(window.globalVar);   // What will this log?
+console.log(window.globalLet);   // What about this?
+console.log(window.globalConst); // And this?
+```
+<details>
+  <summary>Answer</summary>
+  First, **'I'm a var'**. Second and third, **undefined**. Only var can be attached to window object.
+</details>
