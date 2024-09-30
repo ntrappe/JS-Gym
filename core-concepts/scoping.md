@@ -91,6 +91,20 @@ console.log(pug);            // ERROR
 console.log(shiba);          // ERROR
 ```
 
+### Shadowing
+If you declare a variable in local scope (function or block) with the same name as a variable in a parent scope, the local one will **shadow** the outer one.
+```js
+let foo = 'bar';
+
+function hello() {
+  let foo = 'win';
+  console.log(foo);          // Output: win
+}
+
+hello();
+console.log(foo);            // Output: bar
+```
+
 ## Knowledge Check
 1. **Declaration & Hoisting**: What will be the following code output and why?
 ```js
