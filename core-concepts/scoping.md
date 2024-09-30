@@ -114,7 +114,7 @@ console.log(y);
 ```
 <details>
   <summary>Answer</summary>
-  Both result in **ERROR** because x and y are only accessible from inside { }.  
+  Both result in <b>ERROR</b> because x and y are only accessible from inside { }.  
 </details>
 
 3. **Function Scope**: Given the following code, what will be the output and why?
@@ -129,7 +129,7 @@ testVarScope();
 ```
 <details>
   <summary>Answer</summary>
-  Output is **20** because var is function-scoped, so the variable a declared inside the if block is accessible anywhere within the function scope.
+  Output is <b>20</b> because var is function-scoped, so the variable a declared inside the if block is accessible anywhere within the function scope.
 </details>
 
 4. **TDZ**: Predict what will happen.
@@ -139,7 +139,7 @@ let b = 15;
 ```
 <details>
   <summary>Answer</summary>
-  An **ERROR** is produced because let is hoisted and stays in the TDZ until initialized.
+  An <b>ERROR</b> is produced because let is hoisted and stays in the TDZ until initialized.
 </details>
 
 5. **Global Scope**: What will be logged to the console and why?
@@ -154,5 +154,5 @@ console.log(window.globalConst); // And this?
 ```
 <details>
   <summary>Answer</summary>
-  First, **'I'm a var'**. Second and third, **undefined**. Only var can be attached to window object.
+  First, <b>'I'm a var'</b>. Second and third, <b>undefined</b>. Only var can be attached to window object.
 </details>
