@@ -1,4 +1,10 @@
 # Closure
+
+1. [Definition](#definition)
+2. [Practical Uses](#practical-uses-of-closures)
+3. [Knowledge Check](#knowledge-check)
+
+## Definition
 A **closure** is created when a function "remembers" the variables from its **lexical scope** even 
 when the function is executed outside of that scope. It allows functions to access variables from
 their enclosing scope even after the enclosing function has returned.
@@ -54,3 +60,35 @@ function registerClick(message) {
     });
 }
 ```
+
+## Knowledge Check
+1. **Basic Behavior**: What will the following code output?
+```js
+function outer() {
+    let outerVariable = 'Hello';
+    function inner() {
+        console.log(outerVariable);
+    }
+    return inner;
+}
+
+const closure = outer();
+closure();
+```
+<details>
+  <summary>Answer</summary>
+  The inner function (inner()) forms a closure over the outerVariable defined in the outer() function.   Even though outer() has returned, the closure remembers outerVariable and prints <b>'Hello'</b>.
+</details>
+
+2. **Closure with Loops**: What will be the output of the following code, and why? How would you fix it to get the expected result?
+```js
+for (var i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, 1000);             // 1000 ms = 1 sec
+}
+```
+<details>
+  <summary>Answer</summary>
+  <b>3, 3, 3.</b> After 1 second, the for loop has finished and i has been incremented to 3. Since all the setTimeout functions reference the same i, they all print 3. To fix it, print each value of i with a 1-second delay. You can use let since it's block-scoped and each iteration gets its own i. (1) let i = 0. (2) 1000 * i.
+</details>
