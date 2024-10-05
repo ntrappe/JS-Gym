@@ -3,7 +3,7 @@
 ### 1. JavaScript Core Concepts
 - **[Variables, Scoping, & Hoisting](https://github.com/ntrappe/JS-Gym/blob/main/core-concepts/scoping.md)**
 - **[Closures](https://github.com/ntrappe/JS-Gym/blob/main/core-concepts/closures.md)**
-- **Prototypal Inheritance**
+- **[Prototypal Inheritance](https://github.com/ntrappe/JS-Gym/blob/main/core-concepts/prototypal-inheritance.md)**
 - **Functions**
 - **Event Handling**
 
