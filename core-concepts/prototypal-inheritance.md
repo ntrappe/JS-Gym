@@ -5,6 +5,7 @@
 3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation-explicit)
 4. [Chain - Constructor Functions](#2-constructor-functions-traditional)
 5. [Chain - ES6 Classes](#3-es6-classes-modern)
+6. [Knowledge Check](#knowledge-check)
 
 ## Definition
 **Prototypal inheritance** is the mechanism by which objects can inherit properties and methods
@@ -161,3 +162,85 @@ class Samoyed extends Spitz {
 const sammy = new Samoyed();
 console.log(sammy.food);        // Output: kibble
 ```
+
+## Knowledge Check
+1. **Basic Prototype Chain**: Given the following code, what will be the output of the two console.log() statements, and why?
+```js
+const animal = {
+    eats: true
+};
+
+const rabbit = {
+    jumps: true,
+    __proto__: animal
+};
+
+console.log(rabbit.eats);  // ?
+console.log(rabbit.hasOwnProperty('eats'));  // ?
+```
+<details>
+  <summary>Answer</summary>
+  <b>True</b> and <b>false</b>. The first is true because rabbit inherits from animal via 
+  the prototype chain. The second is false because eats is not an own property of rabbit, it
+  is inherited.
+</details>
+
+2. **Constructor Functions and Prototypes**: Consider the following code. What will dog.greet() output, and why?
+```js
+function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.name}`);
+};
+
+function Dog(name, breed) {
+    Animal.call(this, name);  // Inheriting properties from Animal
+    this.breed = breed;
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+const dog = new Dog('Buddy', 'Labrador');
+dog.greet();  // ?
+```
+
+<details>
+  <summary>Answer</summary>
+  <b>Hello, my name is Buddy</b>. When dog.greet() is called, JS looks up the chain and
+  finds the green method on Animal.prototype and executes it, accessing the name property.
+</details>
+
+3. **ES6 Class Inheritance**: What will be the output of the following code? Explain how the inheritance works in this example.
+```js
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name);  // Calls the parent constructor
+        this.breed = breed;
+    }
+
+    speak() {
+        console.log(`${this.name} barks.`);
+    }
+}
+
+const dog = new Dog('Buddy', 'Labrador');
+dog.speak();  // ?
+```
+
+<details>
+  <summary>Answer</summary>
+  <b>Buddy barks</b>. Dog has its own speak method which overrides the speak method from animal.
+</details>
