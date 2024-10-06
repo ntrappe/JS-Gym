@@ -2,7 +2,7 @@
 
 1. [Definition](#definition)
 2. [Constructor Functions](#constructor-functions)
-3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation-proto)
+3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation-explicit)
 4. [Chain - Constructor Functions](#2-constructor-functions-traditional)
 5. [Chain - ES6 Classes](#3-es6-classes-modern)
 
@@ -75,7 +75,7 @@ When you try to access a property, JS first checks if that objct has it. If not,
 going up the `__proto__` link to look for it until it hits `null`. In JS, there are **three
 main ways** to set up the chain and establish inheritance.
 
-### 1. Direct Prototype Manipulation (`__proto__`)
+### 1. Direct Prototype Manipulation (Explicit)
 This is the most direct and **explicit** way to manipulate the chain. It involves directly
 setting the `__proto__` property of an object to another. It's easy to understand but legacy
 and not the most efficient or safe approach.
