@@ -1,6 +1,10 @@
 # Prototypal Inheritance
 
 1. [Definition](#definition)
+2. [Constructor Functions](#constructor-functions)
+3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation)
+4. [Chain - Constructor Functions](#2-constructor-functions-traditional)
+5. [Chain - ES6 Classes](#3-es6-classes-modern)
 
 ## Definition
 **Prototypal inheritance** is the mechanism by which objects can inherit properties and methods
