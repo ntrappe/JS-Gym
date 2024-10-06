@@ -2,7 +2,7 @@
 
 1. [Definition](#definition)
 2. [Constructor Functions](#constructor-functions)
-3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation__proto__)
+3. [Chain - Direct Prototype Manipulation](#1-direct-prototype-manipulation-proto)
 4. [Chain - Constructor Functions](#2-constructor-functions-traditional)
 5. [Chain - ES6 Classes](#3-es6-classes-modern)
 
