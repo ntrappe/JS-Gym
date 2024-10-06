@@ -68,11 +68,13 @@ chiasa.greet();      // Output: Hi, I'm Chiasa
 
 ## Prototype Chain
 When you try to access a property, JS first checks if that objct has it. If not, it keeps
-going up the `__proto__` link to look for it until it hits `null`.
+going up the `__proto__` link to look for it until it hits `null`. In JS, there are **three
+main ways** to set up the chain and establish inheritance.
 
-### Direct Prototype Manipulation (Explicit)
-Assigning `__proto__` directly is not the standard approach. It makes the prototype chain more
-clear when learning but it's less formal and less safe in production.
+### 1. Direct Prototype Manipulation (`__proto__`)
+This is the most direct and **explicit** way to manipulate the chain. It involves directly
+setting the `__proto__` property of an object to another. It's easy to understand but legacy
+and not the most efficient or safe approach.
 
 ```js
 const dog = {
@@ -94,9 +96,10 @@ console.log(samoyed.weather);      // cold
 console.log(samoyed.food);         // kibble
 ```
 
-### Constructor Functions (Implicit)
+### 2. Constructor Functions (Traditional)
 The more traditional approach is to establish inheritance through constructor functions and setting
-the prototype via `Object.create()`.
+the prototype via `Object.create()`. It's a more structured way to define inheritance but also more 
+verbose.
 
 ```js
 function Dog() = {
@@ -108,23 +111,49 @@ function Spitz() {
   this.weather = 'cold';
 }
 
-// Spitz inherits from Dog
-Spitz.prototype = Object.create(Dog.prototype);
-Spitz.prototype.constructor = Spitz;    // Reset constructor reference
+Spitz.prototype = Object.create(Dog.prototype);     // Sets up prototype chain (spitz <- dog)
+Spitz.prototype.constructor = Spitz;                // Reset constructor reference
 
 function Samoyed() {
   Spitz.call(this);
   this.color = 'white';
 }
 
-// Samoyed inherits from Spitz
-Samoyed.prototype = Object.create(Spitz.prototype);
-Samoyed.prototype.constructor = Samoyed;
+Samoyed.prototype = Object.create(Spitz.prototype); // Sets up prototype chain (samoyed <- spitz)
+Samoyed.prototype.constructor = Samoyed;            // Reset constructor reference
 
-// New instance of samoyed
-const sammy = new Samoyed();
+const sammy = new Samoyed();       // New instance of samoyed
 
-console.log(sammy.color);      // white
-console.log(sammy.weather);    // cold
+console.log(sammy.color);          // white
+console.log(sammy.weather);        // cold
 ```
 
+### 3. ES6 Classes (Modern)
+ES6 introduced `class` syntax which is **syntactic sugar** over the prototype-based inheritance.
+Under the hood, classes still use prototypes, but the syntax is easier. It also supports
+`super()` to call parent class constructors.
+
+```js
+class Dog {
+  constructor() {
+    this.food = 'kibble';
+  }
+}
+
+class Spitz extends Dog {
+  constructor() {
+    super();          // Call parent (animal) ctor
+    this.weather = 'cold';
+  }
+}
+
+class Samoyed extends Spitz {
+  constructor() {
+    super();        // Call parent (spitz) ctor
+    this.color = 'white';
+  }
+}
+
+const sammy = new Samoyed();
+console.log(sammy.food);        // Output: kibble
+```
